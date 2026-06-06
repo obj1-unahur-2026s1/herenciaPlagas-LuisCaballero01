@@ -13,14 +13,16 @@ class Hogar inherits Elemento{
 }
 class Huerta inherits Elemento{
     var capacidadDeProduccion
-    var nivelNoFijo
-// que carajo se hará acá para que sea igual para todos.
 
-    override method esBueno() = capacidadDeProduccion > nivelNoFijo
+    override method esBueno() = capacidadDeProduccion > nivelDeCosechas.valor()
     override method recibirAtaqueDe(unaplaga){
         capacidadDeProduccion -= unaplaga.nivelDeDaño()*0.1 + (if (unaplaga.transmiteEnfermedad()) 10 else 0)
     }
 }
+object nivelDeCosechas{
+    var property valor = 10
+}
+
 class Mascota inherits Elemento{
     var nivelDeSalud
 
