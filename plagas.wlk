@@ -1,3 +1,4 @@
+import elementos.*
 class Plaga{
     var poblacion
 
@@ -27,6 +28,7 @@ class Pulgas inherits Plaga{
 }
 class Garrapatas inherits Pulgas{
     override method realizarAtaque(unElemento){
+        super(unElemento)
         poblacion += poblacion*0.2
     }
 }

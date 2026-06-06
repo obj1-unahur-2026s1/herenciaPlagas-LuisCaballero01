@@ -1,3 +1,4 @@
+import plagas.*
 class Elemento{
     method esBueno()
     method recibirAtaqueDe(unaPlaga)
@@ -16,7 +17,7 @@ class Huerta inherits Elemento{
 
     override method esBueno() = capacidadDeProduccion > nivelDeCosechas.valor()
     override method recibirAtaqueDe(unaplaga){
-        capacidadDeProduccion -= unaplaga.nivelDeDaño()*0.1 + (if (unaplaga.transmiteEnfermedad()) 10 else 0)
+        capacidadDeProduccion -= 0.max(unaplaga.nivelDeDaño()*0.1 + (if (unaplaga.transmiteEnfermedad()) 10 else 0))
     }
 }
 object nivelDeCosechas{
@@ -29,7 +30,7 @@ class Mascota inherits Elemento{
     override method esBueno() = nivelDeSalud > 250
     override method recibirAtaqueDe(unaPlaga){
         if (unaPlaga.transmiteEnfermedad())
-            nivelDeSalud -= unaPlaga.nivelDeDaño()
+            nivelDeSalud = 0.max(nivelDeSalud - unaPlaga.nivelDeDaño())
     }
 }
 class Barrios{
